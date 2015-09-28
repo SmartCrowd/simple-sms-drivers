@@ -1,0 +1,20 @@
+{
+    "name": "smart-crowd/simple-sms-providers",
+    "description": "Addition providers for simple SMS laravel package",
+    "keywords": ["sms", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Klementyev",
+            "email": "klermonte@yandex.ru"
+        }
+    ],
+    "require": {
+        "simplesoftwareio/simple-sms": "~2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SmartCrowd\\Sms\\": "src/Sms/"
+        }
+    }
+}
