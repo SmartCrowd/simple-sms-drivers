@@ -58,7 +58,8 @@ class SmsCenter extends AbstractSMS implements DriverInterface
 
         $data = [
             'phones' => implode(',', $message->getTo()),
-            'mes'    => $composedMessage
+            'mes'    => $composedMessage,
+            'sender' => $message->getFrom()
         ];
 
         $this->buildCall('/send.php');
