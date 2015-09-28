@@ -43,8 +43,9 @@ class SmsRu extends AbstractSMS implements DriverInterface
     /**
      * Sends a SMS message
      *
-     * @parma SimpleSoftwareIO\SMS\Message @messasge The message class.
+     * @parma OutgoingMessage $message The message class.
      * @param OutgoingMessage $message
+     * @return false|string
      */
     public function send(OutgoingMessage $message)
     {
@@ -60,6 +61,13 @@ class SmsRu extends AbstractSMS implements DriverInterface
         $this->buildBody($data);
 
         $raw = (string) $this->getRequest()->getBody();
+
+        $result = explode("\n", $raw);
+        if ($result[0] == '100') {
+            return $result[1];
+        }
+
+        return false;
     }
 
     /**
