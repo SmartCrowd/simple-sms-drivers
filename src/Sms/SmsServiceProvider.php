@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Client;
 use SmartCrowd\Sms\Drivers\SmsCenter;
+use SmartCrowd\Sms\Drivers\SmsRu;
 
 class SmsServiceProvider extends \SimpleSoftwareIO\SMS\SMSServiceProvider
 {
@@ -43,7 +44,7 @@ class SmsServiceProvider extends \SimpleSoftwareIO\SMS\SMSServiceProvider
 
     protected function buildSmsRu()
     {
-        $provider = new SmsCenter(new Client);
+        $provider = new SmsRu(new Client);
 
         $provider->buildBody([
             'api_id' => config('sms.smsru.api_id'),
