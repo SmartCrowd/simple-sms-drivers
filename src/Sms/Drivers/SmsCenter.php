@@ -67,7 +67,7 @@ class SmsCenter extends AbstractSMS implements DriverInterface
 
         $raw = (string) $this->getRequest()->getBody();
 
-        $result = json_decode($raw);
+        $result = json_decode($raw, true);
         if (!empty($result['id'])) {
             return $result['id'];
         } else {
