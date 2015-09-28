@@ -1,5 +1,5 @@
 {
-    "name": "smart-crowd/simple-sms-providers",
+    "name": "smart-crowd/simple-sms-drivers",
     "description": "Addition providers for simple SMS laravel package",
     "keywords": ["sms", "laravel"],
     "license": "MIT",
