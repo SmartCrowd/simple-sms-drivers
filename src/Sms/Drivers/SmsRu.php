@@ -37,7 +37,7 @@ class SmsRu extends AbstractSMS implements DriverInterface
      */
     protected function processReceive($rawMessage)
     {
-        // TODO: Implement processReceive() method.
+        throw new \RuntimeException('Sms Ru does not support Inbound API Calls.');
     }
 
     /**
@@ -78,7 +78,7 @@ class SmsRu extends AbstractSMS implements DriverInterface
      */
     public function checkMessages(Array $options = array())
     {
-        // TODO: Implement checkMessages() method.
+        throw new \RuntimeException('Sms Ru does not support Inbound API Calls.');
     }
 
     /**
@@ -89,7 +89,7 @@ class SmsRu extends AbstractSMS implements DriverInterface
      */
     public function getMessage($messageId)
     {
-        // TODO: Implement getMessage() method.
+        throw new \RuntimeException('Sms Ru does not support Inbound API Calls.');
     }
 
     /**
@@ -100,6 +100,6 @@ class SmsRu extends AbstractSMS implements DriverInterface
      */
     public function receive($raw)
     {
-        // TODO: Implement receive() method.
+        throw new \RuntimeException('Sms Ru does not support Inbound API Calls.');
     }
 }
