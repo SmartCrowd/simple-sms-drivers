@@ -43,6 +43,12 @@ class SmsServiceProvider extends \SimpleSoftwareIO\SMS\SMSServiceProvider
 
     protected function buildSmsRu()
     {
+        $provider = new SmsCenter(new Client);
 
+        $provider->buildBody([
+            'api_id' => config('sms.smsru.api_id'),
+        ]);
+
+        return $provider;
     }
 }

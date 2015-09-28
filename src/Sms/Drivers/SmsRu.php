@@ -21,14 +21,8 @@ class SmsRu extends AbstractSMS implements DriverInterface
      *
      * @var string
      */
-    protected $apiBase = 'https://smsc.ru/sys';
+    protected $apiBase = 'http://sms.ru/sms';
 
-    /**
-     * The ending of the URL that all requests must have.
-     *
-     * @var array
-     */
-    protected $apiEnding = ['fmt' => '3'];
 
     public function __construct(Client $client)
     {
@@ -50,11 +44,22 @@ class SmsRu extends AbstractSMS implements DriverInterface
      * Sends a SMS message
      *
      * @parma SimpleSoftwareIO\SMS\Message @messasge The message class.
-     * @return void
+     * @param OutgoingMessage $message
      */
     public function send(OutgoingMessage $message)
     {
-        // TODO: Implement send() method.
+        $composedMessage = $message->composeMessage();
+
+        $data = [
+            'to'     => implode(',', $message->getTo()),
+            'text'   => $composedMessage,
+            'from'   => $message->getFrom(),
+        ];
+
+        $this->buildCall('/send');
+        $this->buildBody($data);
+
+        $raw = (string) $this->getRequest()->getBody();
     }
 
     /**
