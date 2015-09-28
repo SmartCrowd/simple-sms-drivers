@@ -1,5 +1,5 @@
-# simple-sms-providers
-Addition providers for simple SMS laravel package
+# simple-sms-drivers
+Addition drivers for simple SMS laravel package
 
 ## Installition
 ```bash 
