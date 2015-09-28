@@ -42,13 +42,14 @@ class SmsCenter extends AbstractSMS implements DriverInterface
      */
     protected function processReceive($rawMessage)
     {
-        // TODO: Implement processReceive() method.
+        throw new \RuntimeException('Sms Center does not support Inbound API Calls.');
     }
 
     /**
      * Sends a SMS message
      *
      * @param OutgoingMessage $message
+     * @return false|int
      * @throws \Exception
      */
     public function send(OutgoingMessage $message)
@@ -56,14 +57,21 @@ class SmsCenter extends AbstractSMS implements DriverInterface
         $composedMessage = $message->composeMessage();
 
         $data = [
-            'phones' => $message->getTo(),
+            'phones' => implode(',', $message->getTo()),
             'mes'    => $composedMessage
         ];
 
         $this->buildCall('/send.php');
         $this->buildBody($data);
 
-        dd($this->postRequest());
+        $raw = (string) $this->getRequest()->getBody();
+
+        $result = json_decode($raw);
+        if (!empty($result['id'])) {
+            return $result['id'];
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -74,7 +82,7 @@ class SmsCenter extends AbstractSMS implements DriverInterface
      */
     public function checkMessages(Array $options = array())
     {
-        // TODO: Implement checkMessages() method.
+        throw new \RuntimeException('Sms Center does not support Inbound API Calls.');
     }
 
     /**
@@ -85,7 +93,7 @@ class SmsCenter extends AbstractSMS implements DriverInterface
      */
     public function getMessage($messageId)
     {
-        // TODO: Implement getMessage() method.
+        throw new \RuntimeException('Sms Center does not support Inbound API Calls.');
     }
 
     /**
@@ -96,6 +104,6 @@ class SmsCenter extends AbstractSMS implements DriverInterface
      */
     public function receive($raw)
     {
-        // TODO: Implement receive() method.
+        throw new \RuntimeException('Sms Center does not support Inbound API Calls.');
     }
 }
