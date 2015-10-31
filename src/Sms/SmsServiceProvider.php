@@ -9,47 +9,33 @@ class SmsServiceProvider extends \SimpleSoftwareIO\SMS\SMSServiceProvider
 
     public function registerSender()
     {
-        try {
+        parent::registerSender();
 
-            return parent::registerSender();
+        $sender = $this->app['sms.sender'];
 
-        } catch (\InvalidArgumentException $e) {
+        $sender->extend('smsru', function ($app) {
 
-            $driver = config('sms.driver');
+            $config = $app['config']->get('sms.smsru', []);
 
-            switch ($driver) {
-                case 'smsru':
-                    return $this->buildSmsRu();
+            $driver = new SmsRu(new Client);
+            $driver->buildBody([
+                'api_id' => $config['api_id']
+            ]);
 
-                case 'smscenter':
-                    return $this->buildSmsCenter();
+            return $driver;
+        });
 
-                default:
-                    throw new \InvalidArgumentException('Invalid SMS driver.', 0, $e);
-            }
-        }
-    }
+        $sender->extend('smscenter', function ($app) {
 
-    protected function buildSmsCenter()
-    {
-        $provider = new SmsCenter(new Client);
+            $config = $app['config']->get('sms.smscenter', []);
 
-        $provider->buildBody([
-            'login' => config('sms.smscenter.login'),
-            'psw'   => config('sms.smscenter.password'),
-        ]);
+            $driver = new SmsCenter(new Client);
+            $driver->buildBody([
+                'login' => $config['login'],
+                'psw'   => $config['password'],
+            ]);
 
-        return $provider;
-    }
-
-    protected function buildSmsRu()
-    {
-        $provider = new SmsRu(new Client);
-
-        $provider->buildBody([
-            'api_id' => config('sms.smsru.api_id'),
-        ]);
-
-        return $provider;
+            return $driver;
+        });
     }
 }
