@@ -29,11 +29,15 @@ php artisan vendor:publish
 Now you can set up addtition sms drivers in `config/sms.php` file:
 ```php
 'smscenter' => [
-    'login' => env('SMS_CENTER_LOGIN'),
+    'login'    => env('SMS_CENTER_LOGIN'),
     'password' => env('SMS_CENTER_PASSWORD')
 ],
 'smsru' => [
     'api_id' => env('SMS_RU_API_ID')
+],
+'smsclub' => [
+    'login'    => env('SMS_CLUB_LOGIN'),
+    'password' => env('SMS_CLUB_PASSWORD')
 ],
 ```
 

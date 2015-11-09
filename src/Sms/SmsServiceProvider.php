@@ -37,5 +37,19 @@ class SmsServiceProvider extends \SimpleSoftwareIO\SMS\SMSServiceProvider
 
             return $driver;
         });
+
+        $sender->extend('smsclub', function ($app) {
+
+            $config = $app['config']->get('sms.smsclub', []);
+
+            $driver = new SmsClub(new Client);
+            $driver->buildBody([
+                'username'   => $config['login'],
+                'password'   => $config['password'],
+                'lifetime'   => 60 * 24 * 30, // one month
+            ]);
+
+            return $driver;
+        });
     }
 }
