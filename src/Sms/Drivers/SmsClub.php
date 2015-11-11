@@ -60,7 +60,7 @@ class SmsClub extends AbstractSMS implements DriverInterface
 
         $data = [
             'to'   => implode(';', $message->getTo()),
-            'text' => mb_convert_encoding($composedMessage, 'windows-1251', 'utf-8'),
+            'text' => base64_encode( iconv("UTF-8", "windows-1251", $composedMessage) ),
             'from' => $message->getFrom()
         ];
 
