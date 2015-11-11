@@ -3,6 +3,7 @@
 use GuzzleHttp\Client;
 use SmartCrowd\Sms\Drivers\SmsCenter;
 use SmartCrowd\Sms\Drivers\SmsRu;
+use SmartCrowd\Sms\Drivers\SmsClub;
 
 class SmsServiceProvider extends \SimpleSoftwareIO\SMS\SMSServiceProvider
 {
