@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "simplesoftwareio/simple-sms": "^2.0"
+        "simplesoftwareio/simple-sms": "2.0.0"
     },
     "autoload": {
         "psr-4": {
