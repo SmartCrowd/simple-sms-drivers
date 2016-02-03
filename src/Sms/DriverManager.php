@@ -2,24 +2,14 @@
 
 namespace SmartCrowd\Sms;
 
-use Illuminate\Support\Manager;
 use SmartCrowd\Sms\Drivers\SmsRu;
 use SmartCrowd\Sms\Drivers\SmsCenter;
 use SmartCrowd\Sms\Drivers\SmsClub;
 use GuzzleHttp\Client;
+use SimpleSoftwareIO\SMS\DriverManager as BaseDriverManager;
 
-class DriverManager extends Manager
+class DriverManager extends BaseDriverManager
 {
-    /**
-     * Get the default sms driver name.
-     *
-     * @return string
-     */
-    public function getDefaultDriver()
-    {
-        return $this->app['config']['sms.driver'];
-    }
-
     /**
      * Create an instance of the smsru driver
      *
