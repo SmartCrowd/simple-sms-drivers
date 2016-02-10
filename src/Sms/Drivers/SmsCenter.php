@@ -29,6 +29,11 @@ class SmsCenter extends AbstractSMS implements DriverInterface
      */
     protected $apiEnding = ['fmt' => '3'];
 
+    /**
+     * @var string
+     */
+    protected $charset = 'utf-8';
+
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -59,7 +64,8 @@ class SmsCenter extends AbstractSMS implements DriverInterface
         $data = [
             'phones' => implode(',', $message->getTo()),
             'mes'    => $composedMessage,
-            'sender' => $message->getFrom()
+            'sender' => $message->getFrom(),
+            'charset' => $this->charset
         ];
 
         $this->buildCall('/send.php');

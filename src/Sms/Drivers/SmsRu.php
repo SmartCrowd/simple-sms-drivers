@@ -23,6 +23,10 @@ class SmsRu extends AbstractSMS implements DriverInterface
      */
     protected $apiBase = 'http://sms.ru/sms';
 
+    /**
+     * @var string
+     */
+    protected $charset = 'utf-8';
 
     public function __construct(Client $client)
     {
@@ -55,6 +59,7 @@ class SmsRu extends AbstractSMS implements DriverInterface
             'to'     => implode(',', $message->getTo()),
             'text'   => $composedMessage,
             'from'   => $message->getFrom(),
+            'charset' => $this->charset
         ];
 
         $this->buildCall('/send');
