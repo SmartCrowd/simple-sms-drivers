@@ -31,6 +31,11 @@ class SmsClub extends AbstractSMS implements DriverInterface
      */
     protected $apiEnding = ['fmt' => '3'];
 
+    /**
+     * @var string
+     */
+    protected $charset = 'utf-8';
+
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -61,7 +66,8 @@ class SmsClub extends AbstractSMS implements DriverInterface
         $data = [
             'to'   => implode(';', $message->getTo()),
             'text' => base64_encode(mb_convert_encoding($composedMessage, 'windows-1251', 'utf-8')),
-            'from' => $message->getFrom()
+            'from' => $message->getFrom(),
+            'charset' => $this->charset
         ];
 
         $this->buildCall('/httpsendsms.php');
